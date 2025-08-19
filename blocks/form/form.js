@@ -1,28 +1,48 @@
 export default function decorate(block) {
-  const form = block.querySelector('.form-block');
-  if (!form) return;
+  // Create form element
+  const form = document.createElement('form');
+  form.setAttribute('method', 'POST'); // or GET, depending on usage
+  form.setAttribute('action', '#'); // Replace with your endpoint
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
+  // Form fields - simple Name, Email, Message
+  const fields = [
+    { label: 'Name', type: 'text', name: 'name', required: true },
+    { label: 'Email', type: 'email', name: 'email', required: true },
+    { label: 'Message', type: 'textarea', name: 'message', required: true },
+  ];
 
-    const getValue = (selector) => {
-      const el = form.querySelector(selector);
-      return el ? el.value.trim() : '';
-    };
+  fields.forEach((field) => {
+    const fieldWrapper = document.createElement('div');
+    fieldWrapper.className = 'form-field';
 
-    const getChecked = (selector) => {
-      const el = form.querySelector(selector);
-      return el ? el.checked : false;
-    };
+    const label = document.createElement('label');
+    label.setAttribute('for', field.name);
+    label.textContent = field.label;
 
-    const data = {
-      firstName: getValue("[name='firstName']"),
-      lastName: getValue("[name='lastName']"),
-      message: getValue("[name='message']"),
-      subscribe: getChecked("[name='subscribe']")
-    };
+    let input;
+    if (field.type === 'textarea') {
+      input = document.createElement('textarea');
+    } else {
+      input = document.createElement('input');
+      input.setAttribute('type', field.type);
+    }
 
-    console.log("Form submitted:", data);
-    alert("Thanks for submitting!");
+    input.setAttribute('name', field.name);
+    input.setAttribute('id', field.name);
+    if (field.required) input.setAttribute('required', 'required');
+
+    fieldWrapper.appendChild(label);
+    fieldWrapper.appendChild(input);
+    form.appendChild(fieldWrapper);
   });
+
+  // Submit button
+  const submit = document.createElement('button');
+  submit.setAttribute('type', 'submit');
+  submit.textContent = 'Submit';
+  form.appendChild(submit);
+
+  // Replace block content with form
+  block.innerHTML = '';
+  block.appendChild(form);
 }
