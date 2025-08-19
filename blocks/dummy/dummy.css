@@ -1,4 +1,4 @@
-.dummy.quote {
+.block.dummy {
   background-color: color(srgb 0.678 0.847 0.902); /* lightblue */
   padding: 0 0 24px;
   display: flex;
@@ -6,19 +6,19 @@
   margin: 1rem 0;
 }
 
-.dummy.quote dummyquote {
+.block.dummy blockdummy {
   margin: 16px;
   text-indent: 0;
 }
 
-.dummy.quote > div:last-child > div {
+.block.dummy > div:last-child > div {
   margin: 0 16px;
   font-size: small;
   font-style: italic;
   position: relative;
 }
 
-.dummy.quote > div:last-child > div::after {
+.block.dummy > div:last-child > div::after {
   content: "";
   display: block;
   position: absolute;
