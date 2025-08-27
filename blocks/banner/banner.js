@@ -1,9 +1,11 @@
 export default function decorate(block) {
-  const picture = block.querySelector('image');
+    
+    const image = block.querySelector('img');
+    
+    image.setAttribute('loading', 'lazy');
   
-    picture.setAttribute('loading', 'lazy');
+    console.log('images.......................................', image);
   
-  console.log('images.......................................', picture);
   // const img = pictureTag?.querySelector('img');
 
   // if (img) {
