@@ -29,6 +29,7 @@
 .hero-title {
   font-size: 2rem;
   font-weight: 600;
+  color: red;
 }
 
 @media (min-width: 768px) {

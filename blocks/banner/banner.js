@@ -1,7 +1,11 @@
 export default function decorate(block) {
     console.log('block ----->>>', block);
-    const image = block.querySelector('img');
-    
+
+    const img = block.querySelector('img');
+    const title = block.querySelector('p');
+
+    block.classList.add('hero-banner');
+    title.classList.add('.hero-title');
     // image.setAttribute('loading', 'lazy');
   
     console.log('images.......................................', image);
