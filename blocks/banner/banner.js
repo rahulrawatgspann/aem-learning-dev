@@ -1,31 +1,26 @@
 export default function decorate(block) {
-    console.log('block ----->>>', block);
+  console.log('Decorating hero banner block:', block);
 
-    const img = block.querySelector('img');
-    const title = block.querySelector('p');
+  // Add base class
+  block.classList.add('hero-banner');
 
-    block.classList.add('hero-banner');
-    title.classList.add('.hero-title');
-    // image.setAttribute('loading', 'lazy');
-  
-    console.log('images.......................................', image);
-  
-  // const img = pictureTag?.querySelector('img');
+  // Handle images
+  const images = block.querySelectorAll('img');
+  images.forEach((img) => {
+    img.classList.add('hero-image');
+    img.setAttribute('loading', 'lazy');
+  });
 
-  // if (img) {
-  //   img.setAttribute('loading', 'eager');
-  //   pictureTag.classList.add('hero-image');
-  // }
+  // Handle text (assuming rich text is rendered as <p> or <div>)
+  const text = block.querySelector('p, div');
+  if (text) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'hero-text-wrapper';
 
-  // block.classList.add('hero-banner');
+    text.classList.add('hero-title');
+    wrapper.appendChild(text);
+    block.appendChild(wrapper);
+  }
 
-  // const headingTag = block.querySelector('h1');
-  // if (headingTag) {
-  //   headingTag.classList.add('hero-title');
-
-  //   const wrapper = document.createElement('div');
-  //   wrapper.className = 'hero-text-wrapper';
-  //   wrapper.appendChild(headingTag);
-  //   block.appendChild(wrapper);
-  // }
+  console.log('Hero banner initialized with', images.length, 'images');
 }
